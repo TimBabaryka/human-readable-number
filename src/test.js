@@ -23,11 +23,26 @@ function toReadable(number) {
             word3 += arr1[number % 100];
         }
       }
+      if (number <= 99 ) {
+        if ( number % 100 >= 20 ) {
+            let dozens = Math.floor((number % 100) / 10);
+            let dozensStr = arr2[dozens];
+            word3 += dozensStr;
+           
+            if( number % 10 !== 0)
+            word3 += ' ' + arr1[number % 10];
+     
+           } else {
+               word3 += arr1[number % 100];
+            }
+        }
+  
+      
   //    word3 += ' ' + arr1[number % 100];
-     return word3;
-    }
+     return word3.trim();
+  }
 
-    console.log(toReadable(5));
+    console.log(toReadable(99));
       
 
 //     for (let i = 0; i < 3; i++) {

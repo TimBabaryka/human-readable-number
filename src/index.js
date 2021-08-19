@@ -4,7 +4,9 @@ module.exports = function toReadable (number) {
   var arr1 = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
   var arr2 = [ '', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
- 
+ if (number == 0){
+   return 'zero'
+ }
   let word3 = '';
   if (number <= 999 && number > 99) {
       let hundreds = Math.floor(number / 100);
@@ -23,11 +25,25 @@ module.exports = function toReadable (number) {
           word3 += arr1[number % 100];
       }
     }
+    if (number <= 99 ) {
+      if ( number % 100 >= 20 ) {
+          let dozens = Math.floor((number % 100) / 10);
+          let dozensStr = arr2[dozens];
+          word3 += dozensStr;
+         
+          if( number % 10 !== 0)
+          word3 += ' ' + arr1[number % 10];
+   
+         } else {
+             word3 += arr1[number % 100];
+          }
+      }
+
 
 
     
-//    word3 += ' ' + arr1[number % 100];
-   return word3;
+
+   return word3.trim();
 }
 
 
